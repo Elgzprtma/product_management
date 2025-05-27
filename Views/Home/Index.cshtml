@@ -1,0 +1,70 @@
+﻿
+    @{
+    ViewData["Title"] = "Home Page";
+    }
+
+    <div class="text-center">
+        <h1 class="display-4">
+            Welcome to Nawatech. <span>
+    @{
+    var user = await UserManager.GetUserAsync(User);
+    }
+
+    @if (user != null)
+{
+    <span>Halo, @user.FirstName!</span>
+}
+
+    
+</span>
+        </h1>
+        <p class="lead">System Management Product</p>
+    </div>
+
+    @if (User.Identity?.IsAuthenticated == true)
+{
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Product Categories</h5>
+                    <p class="card-text">Manage your product categories</p>
+                    <a asp-controller="ProductCategories" asp-action="Index" class="btn btn-primary">View Categories</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Products</h5>
+                    <p class="card-text">Manage your products</p>
+                    <a asp-controller="Products" asp-action="Index" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Profile</h5>
+                    <p class="card-text">Update your profile information</p>
+                    <a asp-controller="Account" asp-action="Profile" class="btn btn-primary">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Get Started</h5>
+                    <p class="card-text">Create an account or login to manage your products</p>
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-primary me-2">Register</a>
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

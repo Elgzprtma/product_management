@@ -1,0 +1,106 @@
+@model NawatechTest.Models.Product
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Product
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Name" class="form-label fw-semibold">
+                                        <i class="fas fa-tag me-1"></i>Product Name
+                                    </label>
+                                    <input asp-for="Name" class="form-control" placeholder="Enter product name" />
+                                    <span asp-validation-for="Name" class="text-danger small"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="CategoryId" class="form-label fw-semibold">
+                                        <i class="fas fa-list me-1"></i>Category
+                                    </label>
+                                    <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+                                        <option value="">-- Select Category --</option>
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-semibold">
+                                <i class="fas fa-align-left me-1"></i>Description
+                            </label>
+                            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter product description"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Price" class="form-label fw-semibold">
+                                        <i class="fas fa-dollar-sign me-1"></i>Price
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rp</span>
+                                        <input asp-for="Price" class="form-control" placeholder="0.00" />
+                                    </div>
+                                    <span asp-validation-for="Price" class="text-danger small"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Stock" class="form-label fw-semibold">
+                                        <i class="fas fa-boxes me-1"></i>Stock Quantity
+                                    </label>
+                                    <input asp-for="Stock" class="form-control" placeholder="0" min="0" />
+                                    <span asp-validation-for="Stock" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Image" class="form-label fw-semibold">
+                                <i class="fas fa-image me-1"></i>Upload Product Image
+                            </label>
+                            <input asp-for="Image" type="file" class="form-control" />
+                            <div class="form-text">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Upload gambar produk (jpg, png, dll)
+                            </div>
+                        </div>
+
+
+                        <hr class="my-4">
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save "></i>Update Product
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="fas fa-times "></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
